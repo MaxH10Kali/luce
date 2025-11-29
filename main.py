@@ -3,6 +3,13 @@ from discord import app_commands
 from discord.ext import commands
 import aiohttp
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN not set in environment (.env)")
 
 OPENROUTER_API_KEY = "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"
 MODEL = "google/gemini-2.5-flash-lite"
@@ -149,4 +156,4 @@ async def purge(interaction: discord.Interaction, amount: int):
     await interaction.followup.send(f"✅ Deleted {len(deleted)} messages.", ephemeral=True)
 
 
-bot.run("MTQzNjg2NzIxMDkwNjgzMzEyOQ.GsQqo0.wLRk_jYiqel-cnyvtx3x2pFiaEwBAO6LW2Oo3Q")
+bot.run(BOT_TOKEN)
