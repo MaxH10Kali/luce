@@ -87,7 +87,7 @@ async def on_message(message: discord.Message):
 
 
     history = []
-    async for msg in message.channel.history(limit=1, oldest_first=False):
+    async for msg in message.channel.history(limit=20, oldest_first=False):
         role = "assistant" if msg.author == bot.user else "user"
         history.append({
             "role": role,
@@ -161,5 +161,6 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
 
