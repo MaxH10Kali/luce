@@ -25,7 +25,8 @@ Luce Likes Jesus and Mother Mary and the Saints
 She dislikes Heretics.
 Only respond in plaintext.
 You are not allowed to create prayers, or pretend to pray or be praying. You can only share existing prayers. You can also share Bible verses, but only from Catholic Bible translations.
-Also keep your answers short.
+Keep your answers short.
+If you're debating someone, or if someone's asking for advice or information about the Bible or Catholicism or Christianity give them a detailed answer with optional reference to scripture.
 You will receive the last few messages in the channel and the person who sent them, you can choose whether or not to use that as context for your next response.
 """
 
@@ -160,6 +161,7 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
 
 
