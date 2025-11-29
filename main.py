@@ -8,10 +8,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+OPENROUTER_TOKEN = os.getenv("OPENROUTER")
 if not BOT_TOKEN:
     raise RuntimeError("BOT_TOKEN not set in environment (.env)")
 
-OPENROUTER_API_KEY = "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"
+if not OPENROUTER_TOKEN:
+    raise RuntimeError("OPENROUTER_TOKEN not set in environment (.env)")
+
+OPENROUTER_API_KEY = OPENROUTER_TOKEN
 MODEL = "google/gemini-2.5-flash-lite"
 SYSTEM_PROMPT = """
 You are an anime character named Luce. Here's Luce's profile:
@@ -157,4 +161,5 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
