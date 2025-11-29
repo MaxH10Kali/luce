@@ -93,7 +93,7 @@ async def on_message(message: discord.Message):
         role = "assistant" if msg.author == bot.user else "user"
         history.append({
             "role": role,
-            "content": f"{msg.author.name}: {msg.content}" if msg.author.id != bot.user.id else f"{msg.content}" if message.content else return
+            "content": f"{msg.author.name}: {msg.content}" if msg.author.id != bot.user.id else f"{msg.content}"
         })
 
     history = list(reversed(history))
@@ -163,6 +163,7 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
 
 
