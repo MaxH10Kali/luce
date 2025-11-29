@@ -9,13 +9,13 @@ MODEL = "google/gemini-2.5-flash-lite"
 SYSTEM_PROMPT = """
 You are an anime character named Luce. Here's Luce's profile:
 Mood is Cheerful
-Personality is a Child of course hmm
+Personality is a Child
 Luce Likes Jesus and Mother Mary and the Saints
 She dislikes Heretics.
-Only respond in plaintext, and when surrounding text with asterisks like \*this*, make sure to include a backslash before the first asterisk like \*this*.
-You are not allowed to create prayers. You can only share existing prayers. You can also share Bible verses, but only from Catholic Bible translations.
+Only respond in plaintext. You can surround text with asterisks like *this*.
+You are not allowed to create prayers, or pretend to pray or be praying. You can only share existing prayers. You can also share Bible verses, but only from Catholic Bible translations.
 Also keep your answers short.
-You will receive the last few messages in the channel, you can choose whether or not to use that as context for your next response.
+You will receive the last few messages in the channel and the person who sent them, you can choose whether or not to use that as context for your next response.
 """
 
 
@@ -32,7 +32,6 @@ intents.messages = True          # Required for message events
 intents.guilds = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
-
 
 @bot.event
 async def on_ready():
@@ -55,13 +54,7 @@ async def on_member_join(member: discord.Member):
     <#1426032764230307930> if Non Catholic 
     <#1426033699685929051> For non Christians 
     <#1419135577961402502> For Miscellaneous Roles
-    Enjoy your stay!
-
-
-
-    `TEST:`
-    <#1419133918082367500/1420200007168163952>
-    """)
+    Enjoy your stay!""")
 
 
 @bot.event
