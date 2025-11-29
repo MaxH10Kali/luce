@@ -73,14 +73,16 @@ async def on_message(message: discord.Message):
     if message.author == bot.user:
         return
 
-    watched_channel_id = 1436900576452546763
-    if message.channel.id != watched_channel_id:
+    watched_channel_id = [1436900576452546763]
+    if message.channel.id not in watched_channel_id:
         await bot.process_commands(message)
         return
 
+    if message.attachments:
+        return
+    
     user_text = message.content.strip()
-    image_url = message.attachments[0].url if message.attachments else None
-    if not user_text and not image_url:
+    if not user_text:
         return
 
     await message.channel.typing()
@@ -91,7 +93,7 @@ async def on_message(message: discord.Message):
         role = "assistant" if msg.author == bot.user else "user"
         history.append({
             "role": role,
-            "content": f"{msg.author.name}: {msg.content}" if msg.author.id != bot.user.id else f"{msg.content}" if message.content else f"{msg.author.name} sent an image: {msg.attachments[0].url}"
+            "content": f"{msg.author.name}: {msg.content}" if msg.author.id != bot.user.id else f"{msg.content}" if message.content else return
         })
 
     history = list(reversed(history))
@@ -99,9 +101,9 @@ async def on_message(message: discord.Message):
     # Add the triggering message (so it's guaranteed included)
     history.append({
         "role": "user",
-        "content": f"{message.author.display_name}: {user_text or message.attachments[0].url}"
+        "content": f"{message.author.display_name}: {user_text}"
     })
-    print(history, "\n\n\n\n\n\n")
+    print(history, "\n\n\n")
     # 🧩 Build payload
     payload = {
         "model": MODEL,
@@ -161,6 +163,7 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
 
 
