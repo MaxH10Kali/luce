@@ -113,9 +113,6 @@ async def on_message(message: discord.Message):
         ]
     }
 
-    # Add image if any
-    if image_url:
-        payload["messages"][-1]["content"] += f"\n[Attached image: {image_url}]"
 
     headers = {
         "Authorization": AuthorizationDef,
@@ -163,6 +160,7 @@ async def purge(interaction: discord.Interaction, amount: int):
 
 
 bot.run(BOT_TOKEN)
+
 
 
 
